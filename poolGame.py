@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # poolGame.py       19Feb2016
-
+# 15-Aug-2016 crs remove ball feature
 
 import argparse
 from Tkinter import *

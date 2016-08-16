@@ -391,10 +391,14 @@ class PoolBallHolderEvent:
             wf = y/height
             print("x=%.2f(%.2fw), y=%.2f(%.2fw)" % (x, lf, y, wf))
             self.holder.nearEdge(x,y)
-            ball = self.holder.insideBall(x,y)
-            if ball.inUse:
-                return                  # Don't select already in use
-        self.holder.pickNewBall(x,y)
+        ball = self.holder.insideBall(x,y)
+                                        # If in use - pull the ball off the table
+        if ball.inUse:
+            number = ball.number
+            self.holder.table.deleteBall(number)
+            self.holder.setBallInUse(number, False);
+        else:                       # if not in use place on table
+            self.holder.pickNewBall(x,y)
     
         
         

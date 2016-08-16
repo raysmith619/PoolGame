@@ -300,6 +300,19 @@ class PoolTable:
             self.aimBall(ball, x, y)            # Aim selected ball
         return ball
 
+        
+    def deleteBall(self,
+                   number,      # Ball number
+                   ):
+        """ delete ball from table
+        Erase ball drawings
+        """
+        for i, ball in enumerate(self.balls):
+            if ball.number == number:
+                del self.balls[i]
+                ball.erase()
+                break
+        return ball
 
     def setCollision(self,
                      collision):
