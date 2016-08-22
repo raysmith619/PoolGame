@@ -43,18 +43,16 @@ class PoolBallHolder:
         self.selectedBall = ball
         if self.trace & 8:
             number = ball.number
-            print "selectBall " + str(number)
-
+            print("selectBall " + str(number))
         
     def unselectBall(self):
     
         if self.trace & 8:
             if self.selectedBall != None:
                 number = self.selectedBall
-                print "unselectBall " + str(number)
+                print("unselectBall " + str(number))
             else:
-                print "unselectBall None"
-        
+                print("unselectBall None")        
         self.selectedBall = None
 
     def setBallInUse(self,
@@ -278,17 +276,13 @@ class PoolBallHolder:
         col_ymin = False
         
         if x+1.5*r > xmax:
-            print("x=%.2f(%.2fr)" % (x,(x+r-xmax)/r))
-    
+            print(("x=%.2f(%.2fr)" % (x,(x+r-xmax)/r)))  
         if x-1.5*r < xmin:
-            print("x=%.2f(%.2fr)" % (x,(x-r-xmin)/r))
-    
+            print(("x=%.2f(%.2fr)" % (x,(x-r-xmin)/r)))    
         if y+1.5*r >= ymax:
-            print("y=%.2f(%.2fr)" % (y,(y+r-ymax)/r))
-    
+            print(("y=%.2f(%.2fr)" % (y,(y+r-ymax)/r)))    
         if y-1.5*r <= ymin:
-            print("y=%.2f(%.2fr)" % (y,(y-r-ymin)/r))
-   
+            print(("y=%.2f(%.2fr)" % (y,(y-r-ymin)/r)))   
     #
     # select available (unused) ball
     def numberAvailable(self):     # Returns: available ball number (0 cue ball), None if none available
@@ -384,12 +378,12 @@ class PoolBallHolderEvent:
             
         (x,y) = self.holderEventLoc(event)
         if self.trace & 8:
-            print "button1_click"
+            print("button1_click")
             length = self.holder.length
             height = self.holder.height
             lf = x/length
             wf = y/height
-            print("x=%.2f(%.2fw), y=%.2f(%.2fw)" % (x, lf, y, wf))
+            print(("x=%.2f(%.2fw), y=%.2f(%.2fw)" % (x, lf, y, wf)))
             self.holder.nearEdge(x,y)
         ball = self.holder.insideBall(x,y)
                                         # If in use - pull the ball off the table
@@ -413,9 +407,9 @@ class PoolBallHolderEvent:
         event
         ):
         if self.trace & 8:
-            print "button3_click"
-        if self.holder.selectedBall != None:
-            return          # Already selected
+            print("button3_click")
+            if self.holder.selectedBall != None:
+                return          # Already selected
         
         (x,y) = self.holderEventLoc(event)
         ball = self.holder.createSelectBall(x,y)
@@ -434,9 +428,9 @@ class PoolBallHolderEvent:
         return
     
         if self.trace & 8:
-            print "release_event"
+            print("release_event")
         if self.holder.selectedBall == None:
-            print "selectedBall == None"
+            print("selectedBall == None")
             return
         
         if self.holder.aimedBall != None:
@@ -486,7 +480,7 @@ class PoolBallHolderEvent:
     
         (x,y) = self.holderEventLoc(event) 
         if self.trace & 8:
-            print_repeat("motion_event")
+            print(_repeat("motion_event"))
             self.holder.nearEdge(x,y)
             
         if self.holder.selectedBall == None:

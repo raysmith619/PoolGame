@@ -6,7 +6,7 @@
 #
 
 from math import *
-from Tkinter import *
+import PoolTk
 
 from PoolTable import *
 from PoolCollision import *
@@ -411,7 +411,7 @@ class PoolBall(object):
                       fill = color,
                       outline = color,
                       tags = item_tag,
-                      style = CHORD,
+                      style = PoolTk.tk.CHORD,
                       start = -thdeg-180.,
                       extent = 2*thdeg
                         )
@@ -424,7 +424,7 @@ class PoolBall(object):
                       fill = color,
                       outline = color,
                       tags = item_tag,
-                      style = CHORD,
+                      style = PoolTk.tk.CHORD,
                       start = -thdeg,
                       extent = 2*thdeg
                         )

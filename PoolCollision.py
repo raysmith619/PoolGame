@@ -30,34 +30,34 @@ def list_hist():
     global tracecollisions
     
     start_running(0)
-    print "\nCollision History"
+    print("\nCollision History")
     for h in tracecollisions:
         r_b = h['_ball']
         r_b2 = h['_ball2']
         time = n(h['__time'],3)
         sep = n(h['__sep'],3)
         vx1 = n(r_b['_vx'])
-        print time, sep, " (r_b['_number'])  vx=" + vx1,
+        print(time, sep, " (r_b['_number'])  vx=" + vx1,
         " vy=" + n(r_b['_vy']),
         " (r_b2['_number']) v2x=" . n(r_b2['_vx']),
-        " v2y=" . n(r_b2['_vy'])
+        " v2y=" . n(r_b2['_vy']))
 
-        print "                   ",
+        print("                   ",
         "vN=" + n(h['_vN']) + " vT=" + n(h['_vT']),
-        "     v2N=" + n(h['_v2N']) + " v2T=" + n(h['_v2T'])
+        "     v2N=" + n(h['_v2N']) + " v2T=" + n(h['_v2T']))
 
-        print "                   "
+        print("                   "
         + "vN_A=" + n(h['_vN_A']) + " vT_A=" + n(h['_vT_A'])
-        + "    v2N_A=" + n(h['_v2N_A']) + " v2T_A=" + n(h['_v2T_A'])
+        + "    v2N_A=" + n(h['_v2N_A']) + " v2T_A=" + n(h['_v2T_A']))
 
 
         r_A = h['_ball_A']
         r_A2 = h['_ball2_A']
-        print " " * 19,
+        print(" " * 19,
         "vx=" . n(r_A['_vx']),
         + " vy=" . n(r_A['_vy'])
         + " (r_A2['_vy']) v2x=" . n(r_A2['_vx'])
-        + " v2y=" . n(r_A2['_vy'])
+        + " v2y=" . n(r_A2['_vy']))
 
 
 #######################################################################################################
@@ -236,8 +236,8 @@ class PoolCollision:
         tan2Theta = loc2Theta + PI/2
     
         if (self.trace & 0x01):
-            print "vx,vy = (", vx, vy, "), v2x,v2y = (", v2x, v2y, ")"
-            print "x,y = (", x, y, "),", x2, y2, " = (", x2, y2, "), sep =", sep
+            print("vx,vy = (", vx, vy, "), v2x,v2y = (", v2x, v2y, ")")
+            print("x,y = (", x, y, "),", x2, y2, " = (", x2, y2, "), sep =", sep)
         # Adjustment to avoid overlap
             # Backoff fastest moving ball amount of separation
         if (sep < 0):
@@ -263,16 +263,16 @@ class PoolCollision:
                     
         sep_A = ball.ballSep(ball2)
         if (self.trace & 0x01):
-            print "After backoff: sep=", sep_A,
+            print("After backoff: sep=", sep_A,)
     # TBD           " x1,y1:(", ball.x, ball.y,
     #            " x2,y2:(", ball2.x, ball2.y
     
             if (sep_A < 0):
-                print "We're overlapping by ", sep_A
-                print "cos(", loc2Theta, cos(loc2Theta), 
-                print "sin(\loc2Theta):", sin(loc2Theta)
+                print("We're overlapping by ", sep_A)
+                print("cos(", loc2Theta, cos(loc2Theta), )
+                print("sin(\loc2Theta):", sin(loc2Theta))
         if (self.trace & 1):
-            print "Collision ball.number=ball2.number"
+            print("Collision ball.number=ball2.number")
                             # Do ball pair, updating then and keeping
                             # record in each ball indicating the pair has been
                             # delt with
@@ -289,15 +289,15 @@ class PoolCollision:
         locVTheta = locTheta - vTheta    # Angle v to loc
         (vN, vT) = xyrot(locVTheta, vx, vy)
         if (self.trace & 0x01):
-            print "vTheta=vTheta, locTheta=locTheta, locVTheta=locVTheta"
+            print("vTheta=vTheta, locTheta=locTheta, locVTheta=locVTheta")
     
-        print "vN=",vN, "vT=",vT
+        print("vN=",vN, "vT=",vT)
                                                 # Ball 2
         v2Theta = atan2(v2y, v2x)
         locV2Theta = locTheta - v2Theta    # Angle v to loc(ball 1)
     
         if (self.trace & 0x01):
-            print "loc2Theta=loc2Theta, v2Theta=v2Theta, locV2Theta=locV2Theta, v2Mag=v2Mag"
+            print("loc2Theta=loc2Theta, v2Theta=v2Theta, locV2Theta=locV2Theta, v2Mag=v2Mag")
         (v2N, v2T) = xyrot(locV2Theta, v2x, v2y)
     
                                                 # v1AN = v2N, v2AT = v1T
@@ -307,8 +307,8 @@ class PoolCollision:
         v2T_A = v2T
     
         if (self.trace & 0x01):
-            print "vN  =vN,   vT  = vT,  v2N = v2N,   v2T = v2T"
-            print "vN_A=vN_A, vT_A=vT_A, v2N_A=v2N_A, v2T_A = v2T_A"
+            print("vN  =vN,   vT  = vT,  v2N = v2N,   v2T = v2T")
+            print("vN_A=vN_A, vT_A=vT_A, v2N_A=v2N_A, v2T_A = v2T_A")
                                                 # Add new components
                                                 # To get resulting 
         (vx_A, vy_A) = vRsum(locTheta, vN_A, tanTheta, vT_A)
@@ -342,9 +342,9 @@ class PoolCollision:
             t['ball2_A'] = ball     # Can't do deepcopy
             tracecollisions.append(t)
         if (self.trace & 0x01):
-            print "vx,vy[after] = (vx_A,vy_A), v2x,v2y = (v2x_A,v2y_A)"
+            print("vx,vy[after] = (vx_A,vy_A), v2x,v2y = (v2x_A,v2y_A)")
         if (self.trace & 0x01):
-            print "Ball collision updated"
+            print("Ball collision updated")
     
     
     # Check for collision with all other balls,
@@ -432,14 +432,14 @@ class PoolCollision:
                 time_rel_str = "%.2f" % time_rel
                 print("")
                 if col_xmin:
-                    print "col_xmin: t=" + time_rel_str + " x=" + str(x/r) + "r"
+                    print("col_xmin: t=" + time_rel_str + " x=" + str(x/r) + "r")
                 if col_xmax:
-                    print "col_xmax: t=" + time_rel_str + "  x=" + str((self.table.length-x)/r) + "r"
+                    print("col_xmax: t=" + time_rel_str + "  x=" + str((self.table.length-x)/r) + "r")
                 print("collision edge: ball" + str(ball.number)
                 + " x=" + str(ball.x) +  " vx=" + str(ball.vx)
                 + " y=" , str(ball.y) +  " vy=" + str(ball.vy)
                 )
-                print ""
+                print("")
 
 
 

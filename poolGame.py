@@ -1,10 +1,9 @@
 #!/usr/bin/python
 # poolGame.py       19Feb2016
 # 15-Aug-2016 crs remove ball feature
-
+import sys
+       
 import argparse
-from Tkinter import *
-import ttk
 
 import re
 import time
@@ -12,6 +11,7 @@ from math import *
 from random import *
 from copy import *
 
+import PoolTk           # 2.x / 3.x interface to Tk
 from PoolTable import *
 from PoolBall import *
 from PoolBallHolder import *
@@ -205,7 +205,7 @@ if args.mbankloss != None:
 
 b1 = args.x1
 b2 = args.x2
-print "setup_start_ b config - setup None"
+print("setup_start_ b config - setup None")
 setup_start_b = None
 
             
@@ -253,8 +253,8 @@ def get_table_choice ():
     if (get_table_choice_count == 1):   # Ignore first call
         return
     if (trace):
-        print "get_table_choice"
-    setup_balls = get_table_var
+        print("get_table_choice")
+        setup_balls = get_table_var
     if get_table_om.exists():
         get_table_om.destroy()
     reset_play() 
@@ -343,11 +343,11 @@ def start_play ():
     in_setup = 0
     reset_play()                        # set table
                                     # Setup for setup
-    print "setup_start_ b config"
+    print("setup_start_ b config")
     setup_start_b.config(text = "Setup",
         command = setup,
             )
-    print "setup_start_ b config - after"
+    print("setup_start_ b config - after")
     start_running(1)
 
 
@@ -375,7 +375,7 @@ def time_passes():
 def update_display ():
     global trace
     if (trace & 0x10):
-        print "update_display"
+        print("update_display")
     draw_balls()
 
              
@@ -388,16 +388,16 @@ table_vertical_pix = scale_pixel_cm * width       # Pool short side
 
 
 
-
-mw = Tk()
+pTk = PoolTk.PoolTk()
+mw = pTk.Tk()       # From PoolTk
     
     
     
-game_fr = Frame(mw)             # Contains table Plus Ball holder
+game_fr = pTk.Frame(mw)             # Contains table Plus Ball holder
 game_fr.pack(side='top')
-table_fr = Frame(mw)
+table_fr = pTk.Frame(mw)
 table_fr.pack(side = 'top')
-bh_fr = Frame(mw)
+bh_fr = pTk.Frame(mw)
 bh_fr.pack(side = 'top')
     
 end_pgm = False     # Set if end of pgmk_8ball
@@ -425,8 +425,6 @@ app = PoolWindow(mw,
 
 
 
-#top_fr = mw.Frame.pack(side = 'top')
-
 
 # Right-Click sets velocity of ball at that place
 def shoot_ball_callback(event):
@@ -438,7 +436,7 @@ def shoot_ball_callback(event):
 
 #############################################################################
         
-cvs = Canvas(table_fr, relief = 'sunken',
+cvs = PoolTk.tk.Canvas(table_fr, relief = 'sunken',
                     bd     = 2,
                     width  = table_horizontal_pix,
                     height = table_vertical_pix,
@@ -463,7 +461,7 @@ bh_height_pix = scale_pixel_cm * bh_height
 bh_length = length
 bh_length_pix = scale_pixel_cm * bh_length
 
-cvs_bh = Canvas(bh_fr, relief = 'sunken',
+cvs_bh = PoolTk.tk.Canvas(bh_fr, relief = 'sunken',
                     bd     = 2,
                     width  = bh_length_pix,
                     height = bh_height_pix,
@@ -495,10 +493,10 @@ def reset():
 #tA.setRunPauseB(run_pause_b);
 tA.runPause(False)
 #    mw.eval('::ttk::CancelRepeat')
-#    print "Shutting down via iconify"
+#    print("Shutting down via iconify")
 #    mw.iconify()
 
-#    print "Exiting via exit(0)"
+#    print("Exiting via exit(0)")
 #    sys.exit(0)
 
 
@@ -537,7 +535,7 @@ while 1:
         time_sleep = display_tick - time_elapsed
         time.sleep(time_sleep)
 
-print "After pgm loop"
-print "Shutting down via destroy"
+print("After pgm loop")
+print("Shutting down via destroy")
 mw.destroy()
 sys.exit(0)

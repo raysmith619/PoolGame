@@ -11,22 +11,21 @@ from PoolBall import *
 # Generic functions
 #
 
-# print if new, else "."
+# print(if new, else ".")
 print_text = ""
 print_count = 0
 def print_repeat(text):
     global print_text
     global print_count
     if text == print_text:
-        print("%1s" % ".") ,
+        print(("%1s" % "."))
         print_count = 1
     else:
         print_text = text
         if print_count > 0:
-            print ""
-        print_count = 0
-        print text
-
+            print("")
+            print_count = 0
+            print(text)
 
 class PoolTable:
     """Pool Table Operation and View"""
@@ -118,8 +117,8 @@ class PoolTable:
         self.selectedBall = ball
         if self.trace & 8:
             number = ball.number
-            print "selectBall " + str(number)
-
+            print("selectBall " + str(number))
+            
     
     #
     # table location of event
@@ -134,10 +133,10 @@ class PoolTable:
         if self.trace & 8:
             if self.selectedBall != None:
                 number = self.selectedBall
-                print "unselectBall " + str(number)
+                print("unselectBall " + str(number))
             else:
-                print "unselectBall None"
-        
+                    print("unselectBall None")
+                
         self.selectedBall = None
        
     # Set velocity as delta x,y per .2oo sec
@@ -150,8 +149,8 @@ class PoolTable:
             return
         self.aimingRemove()         # Clear any previous aiming
         if self.trace & 8:
-            print "shoot_ball_release: " + str(aimed_ball.getNumber())
-     ###TBD work this out
+            print("shoot_ball_release: " + str(aimed_ball.getNumber()))
+            ###TBD work this out
         x0 = aimed_ball.x0
         y0 = aimed_ball.y0
         vx = (x-x0)*1.       # velocity mult 
@@ -199,8 +198,8 @@ class PoolTable:
         
         if self.trace & 8:
             number = ball.getNumber()
-            print "aimBall " + str(number)
-        
+            print("aimBall " + str(number))
+            
         self.aimedBall = ball
         ball.aim(x,y)
 
@@ -279,7 +278,8 @@ class PoolTable:
         ball = self.insideBall(x,y)
             
         if ball == None:
-            if self.ballFits(x,y):
+###            if self.ballFits(x,y):
+            if True:                        # Just force it
                 if number == None:
                     number = self.numberAvailable()
                 if number == None:
@@ -627,17 +627,13 @@ class PoolTable:
         col_ymin = False
         
         if x+1.5*r > xmax:
-            print("x=%.2f(%.2fr)" % (x,(x+r-xmax)/r))
-    
+            print(("x=%.2f(%.2fr)" % (x,(x+r-xmax)/r)))    
         if x-1.5*r < xmin:
-            print("x=%.2f(%.2fr)" % (x,(x-r-xmin)/r))
-    
+            print(("x=%.2f(%.2fr)" % (x,(x-r-xmin)/r)))    
         if y+1.5*r >= ymax:
-            print("y=%.2f(%.2fr)" % (y,(y+r-ymax)/r))
-    
+            print(("y=%.2f(%.2fr)" % (y,(y+r-ymax)/r)))    
         if y-1.5*r <= ymin:
-            print("y=%.2f(%.2fr)" % (y,(y-r-ymin)/r))
-    
+            print(("y=%.2f(%.2fr)" % (y,(y-r-ymin)/r)))    
     #
     # select available ball
     # May be replaced with user selection
@@ -759,12 +755,12 @@ class PoolTableEvent:
             
         (x,y) = self.tableEventLoc(event)
         if self.trace & 8:
-            print "button1_click"
+            print("button1_click")
             length = self.table.length
             width = self.table.width
             lf = x/length
             wf = y/width
-            print("x=%.2f(%.2fw), y=%.2f(%.2fw)" % (x, lf, y, wf))
+            print(("x=%.2f(%.2fw), y=%.2f(%.2fw)" % (x, lf, y, wf)))
             self.table.nearEdge(x,y)
         self.table.createSelectBall(x,y)
     
@@ -781,7 +777,7 @@ class PoolTableEvent:
         event
         ):
         if self.trace & 8:
-            print "button3_click"
+            print("button3_click")
         if self.table.selectedBall != None:
             return          # Already selected
         
@@ -799,9 +795,9 @@ class PoolTableEvent:
         ):
         
         if self.trace & 8:
-            print "release_event"
+            print("release_event")
         if self.table.selectedBall == None:
-            print "selectedBall == None"
+            print("selectedBall == None")
             return
         
         if self.table.aimedBall != None:
@@ -848,7 +844,7 @@ class PoolTableEvent:
         
         (x,y) = self.tableEventLoc(event) 
         if self.trace & 8:
-            print_repeat("motion_event")
+            print(_repeat("motion_event"))
             self.table.nearEdge(x,y)
             
         if self.table.selectedBall == None:

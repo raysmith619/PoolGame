@@ -1,8 +1,8 @@
-Pool Game
+# Pool Game
 A simple two dimensional version of pool / billiards writen in Python.
-15-Aug-2016 crs remove ball feature
+* 15-Aug-2016 crs remove ball feature
 
-My initial project goals were:
+## My initial project goals were:
   1. Practice using Python after many years using programming languages such as C, C++, and Perl.
   2. Demonstrate Python with a graphical user interface.
   3. Demonstrate Python with a simple object-oriented use.
@@ -10,7 +10,7 @@ My initial project goals were:
   5. Practice simple "game setup" without searching the Internet for more elaborate and
      probably better done examples of game play, display, or coding.
 
-History
+## History
   1. Initially this program was done as an exercise in Perl, with little object orientation.
   2. After working, but before the introduction of the "Ball Holder", this program was
      translated, rather literally, into Python.
@@ -19,8 +19,9 @@ History
      is a class derived from the pool table.  The holder ball is a class derived from the pool ball.
   5. 15-Aug-2016: Mouse clicking an in-use ball in the ball holder removes this ball from the table
                   and makes this ball available.
-     
-Limitations (To be added?)
+  6. 22-Aug-2016: Modify to support Python 2.x and 3.x
+  
+## Limitations (To be added?)
   1. There are no pockets.
   2. There is no "friction" or energy loss.
   3. There is no ball rotation.

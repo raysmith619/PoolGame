@@ -1,14 +1,12 @@
 #!/usr/bin/python
-# Simple enough, just import everything from tkinter.
-###from tkinter import *
-from Tkinter import *
+import PoolTk
 
 def hello():
-    print "hello!"
+    print("hello!")
 
 # Here, we are creating our class, Window, and inheriting from the Frame
 # class. Frame is a class from the tkinter module. (see Lib/tkinter/__init__)
-class PoolWindow(Frame):
+class PoolWindow(PoolTk.tk.Frame):
 
     # Define settings upon initialization. Here you can specify
     def __init__(self,
@@ -19,7 +17,7 @@ class PoolWindow(Frame):
                  ):
         
         # parameters that you want to send through the Frame class. 
-        Frame.__init__(self, master)   
+        PoolTk.tk.Frame.__init__(self, master)   
 
         #reference to the master widget, which is the tk window                 
         self.master = master
@@ -38,14 +36,14 @@ class PoolWindow(Frame):
         self.master.title("Pool Playing")
 
         # allowing the widget to take the full space of the root window
-        self.pack(fill=BOTH, expand=1)
+        self.pack(fill=PoolTk.tk.BOTH, expand=1)
 
         # creating a menu instance
-        menubar = Menu(self.master)
+        menubar = PoolTk.tk.Menu(self.master)
         self.master.config(menu=menubar)
 
         # create the file object)
-        filemenu = Menu(menubar, tearoff=0)
+        filemenu = PoolTk.tk.Menu(menubar, tearoff=0)
         filemenu.add_command(label="Open", command=hello)
         filemenu.add_command(label="Save", command=hello)
         filemenu.add_separator()
@@ -53,7 +51,7 @@ class PoolWindow(Frame):
         menubar.add_cascade(label="File", menu=filemenu)
 
                                 # Game selection coming from text, function pairs from
-        gamemenu = Menu(menubar, tearoff=0)
+        gamemenu = PoolTk.tk.Menu(menubar, tearoff=0)
         for namegame in self.games:
             name = namegame[0]
             game = namegame[1]
@@ -65,7 +63,7 @@ class PoolWindow(Frame):
 
         menubar.add_cascade(label="New Game", menu=gamemenu)
                                 # Action coming from text, function pairs from
-        actionmenu = Menu(menubar, tearoff=0)
+        actionmenu = PoolTk.tk.Menu(menubar, tearoff=0)
         for nameaction in self.actions:
             name = nameaction[0]
             action = nameaction[1]
@@ -83,38 +81,38 @@ class PoolWindow(Frame):
 #######################################################################
 if __name__ == "__main__":
     def rack_8ball():
-        print("rack_8ball")
+        print(("rack_8ball"))
         
         
     def rack_9ball():
-        print("rack_9ball")
+        print(("rack_9ball"))
         
         
     def empty_8ball():
-        print("empty_8ball")
+        print(("empty_8ball"))
         
         
     def billiards():
-        print("billiards")
+        print(("billiards"))
         
     def empty_billiards():
-        print("empty_billiards")
+        print(("empty_billiards"))
         
     def run_game():
-        print("run_game")
+        print(("run_game"))
         
     def pause_game():
-        print("pause_game")
+        print(("pause_game"))
         
     def aim_next():
-        print("aim_next")
+        print(("aim_next"))
         
         
     # root window created. Here, that would be the only window, but
     # you can later have windows within windows.
-    mw = Tk()
+    mw = PoolTk.Tk()
     def user_exit():
-        print("user_exit")
+        print(("user_exit"))
         exit()
         
         
